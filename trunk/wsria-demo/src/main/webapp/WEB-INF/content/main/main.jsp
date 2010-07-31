@@ -13,7 +13,7 @@
     <style type="text/css">
     .title {
     	overflow: hidden; height: 30px;
-        background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
+        background: url(${ctx }/images/xeasyui/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
         line-height: 20px;
         color: #fff; 
         font-family: Verdana, 微软雅黑,黑体;
@@ -32,11 +32,11 @@
 <body class="easyui-layout" style="overflow-y: hidden">
 	<noscript>
 		<div class="noscript">
-		    <img src="images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+		    <img src="${ctx }/images/xeasyui/noscript.gif" alt='抱歉，请开启脚本支持！' />
 		</div>
 	</noscript>
     <div region="north" split="true" border="false" class="title">
-        <span style="padding-left:10px; font-size: 16px; "><img src="images/blocks.gif" width="20" height="20" align="absmiddle" /> What's the RIA? ->基于Java和jQuery应用演示</span>
+        <span style="padding-left:10px; font-size: 16px; "><img src="${ctx }/images/xeasyui/blocks.gif" width="20" height="20" align="absmiddle" /> What's the RIA? ->基于Java和jQuery应用演示</span>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
         <div class="footer">By <a href="http://www.wsria.cn" target="_blank" title="访问作者博客">咖啡兔 www.wsria.cn</a></div>
