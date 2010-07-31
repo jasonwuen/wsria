@@ -50,11 +50,20 @@ public class CityManager implements Serializable {
 	
 	/**
 	 * 查询所有的下属区县
-	 * @param parentId
+	 * @param superId
 	 * @return
 	 */
-	public List<City> findChildCity(Long parentId) {
-		return entityDao.findChildCity(parentId);
+	public List<City> findChildCity(Long superId) {
+		return entityDao.findChildCity(superId);
+	}
+	
+	/**
+	 * 统计下属区县数量
+	 * @param superId
+	 * @return
+	 */
+	public Long countChildCity(Long superId) {
+		return entityDao.countChildCity(superId);
 	}
 	
 }

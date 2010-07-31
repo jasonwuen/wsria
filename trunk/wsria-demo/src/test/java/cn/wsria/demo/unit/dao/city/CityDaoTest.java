@@ -31,6 +31,8 @@ public class CityDaoTest extends BaseTxTestCase {
 			entityDao.save(city);
 		}
 		
+		assertEquals(3, entityDao.countChildCity(topCity.getId()).longValue());
+		
 		// 读取全部城市
 		List<City> findAllCity = entityDao.findChildCity(topCity.getId());
 		assertEquals(n, findAllCity.size());
