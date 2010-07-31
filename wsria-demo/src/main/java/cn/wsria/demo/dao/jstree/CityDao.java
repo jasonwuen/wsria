@@ -19,8 +19,22 @@ public class CityDao extends HibernateDao<City, Long> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public List<City> findChildCity(Long id) {
-		return find("from City where superId=?", id);
+	/**
+	 * 查询下属区县
+	 * @param superId
+	 * @return
+	 */
+	public List<City> findChildCity(Long superId) {
+		return find("from City where superId=?", superId);
+	}
+	
+	/**
+	 * 统计下属区县数量
+	 * @param superId
+	 * @return
+	 */
+	public Long countChildCity(Long superId) {
+		return findUnique("select count(*) from City where superId=?", superId);
 	}
 
 }
