@@ -90,11 +90,24 @@ public class CityAction extends CrudActionSupport<City> {
 					
 					// 设置属性集合
 					Map<String, Object> singleAttr = new HashMap<String, Object>();
-					singleAttr.put("title", "共 " + countChildCity + " 个下属区县");
+					// html元素的title
+					singleAttr.put("title", "共 " + countChildCity + " 个下属区县，备注：" + city.getRemark());
 					subMap.put("attr", singleAttr);
 					tempMap.put("data", subMap);
 				} else {
-					tempMap.put("data", city.getCityName());
+					Map<String, Object> subMap = new HashMap<String, Object>();
+					// 节点的显示文本
+					subMap.put("title", city.getCityName());
+					
+					// 设置属性集合
+					Map<String, Object> singleAttr = new HashMap<String, Object>();
+					// html元素的title
+					singleAttr.put("title", city.getRemark());
+					// 标志为叶子节点
+					singleAttr.put("leaf", true);
+					subMap.put("attr", singleAttr);
+					tempMap.put("data", subMap);
+					
 				}
 				
 				// 设置属性
@@ -106,7 +119,7 @@ public class CityAction extends CrudActionSupport<City> {
 		} catch (Exception e) {
 			logger.error("获取下属区县出错：{}", e.getMessage(), e);
 		}
-		System.out.println(list);
+		logger.debug("IP：{}，获取树结果：{}", Struts2Utils.getRequest().getRemoteHost(), list);
 		Struts2Utils.renderJson(list);
 		return CrudActionSupport.JSON;
 	}
