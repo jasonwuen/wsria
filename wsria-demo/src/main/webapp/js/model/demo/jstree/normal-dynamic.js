@@ -16,10 +16,20 @@ $(function(){
 			return;
 		} else if (eventNodeName == 'A') {
 			var $city = $(event.target);
+			
+			// 点击A展开子节点
+			$("#subjectTree").jstree('toggle_node', $city.parent().find('ins').get(0));
+			
 			if ($city.attr('leaf')) {
-				$('#result').text($city.text());
+				$('#result').text($city.text() + "，ID=" + $city.parent().attr('id'));
 			}
 		}
+	});
+	
+	$(':button').click(function(){
+		//var at = $('#subjectTree').jstree('get_selected');
+		//alert(at.find('a.jstree-clicked').text());
+		$('#subjectTree').jstree('open_all', 'li:first');
 	});
 	
 });

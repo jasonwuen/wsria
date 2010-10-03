@@ -50,9 +50,21 @@
     <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
         <div id="tabs" class="easyui-tabs" fit="true" border="false" >
 			<div title="欢迎使用" style="padding:20px;overflow:hidden;" id="home">
-				演示各种基于Java和jQuery开发的企业应用
+				<p>演示各种基于Java和jQuery开发的企业应用</p>
+				<div>为了让大家更好的使用和学习基于Java和jQuery的应用构建，特地建立了一个演示系统wsria-demo，项目基本情况如下：</div>
+				<div>Java架构：<a href="http://www.springside.org.cn" target="_blank" linkindex="14">springside</a></div>
+				<div>项目构建工具：Maven</div><div><br></div><div>本次发布的版本为初稿，功能如下：</div>
+				<div>1、使用easy-ui搭建的系统页面框架</div>
+				<div>2、实现了动态加载jstree的功能</div>
+				<div><br/></div>
+				<div>提示：因为系统使用maven构建，开发环境也依赖maven，所以先让会maven的童鞋<b>尝鲜</b>，不会maven或者想使用maven的童鞋也可以参考本例子构建企业应用，关于maven的介绍请自己google不再本文范围</div>
+				<div>关于后续版本再我<a href="http://www.wsria.cn" target="_blank" linkindex="15">博客</a>的右侧有计划列表，敬请期待！</div>
+				<div><br/></div>
+				<div><b><font color="#339966" class="Apple-style-span">SVN地址</font></b>：
+					<span style="font-family: monospace; line-height: normal; font-size: 13px;" class="Apple-style-span"><strong><em>http</em></strong>://wsria.googlecode.com/svn/trunk/</span></div>
+				<div><span style="font-family: monospace; line-height: normal; font-size: 13px;" class="Apple-style-span">不定时在线<b>演示地址</b>：</span><a href="http://wsria.gnway.net:10000/wsria-demo/main/main.action" target="_blank">http://wsria.gnway.net:10000/wsria-demo</a><a href="http://kafeitu.gicp.net:10000/wsria-demo" target="_blank"></a></div>
 			</div>
-		</div>
+    	</div>
     </div>
 
 	<div id="mm" class="easyui-menu" style="width:150px;">
