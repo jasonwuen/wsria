@@ -60,7 +60,7 @@ public class AreaInfoAction extends ActionSupport {
 	/**
 	 * 生成完整的带默认值的select元素HTML代码
 	 */
-	public String generateSelectHtmlCode() {
+	public String htmlCode() {
 		try {
 			String htmlCode = areaService.generateSelectHtmlCode(childId);
 			Struts2Utils.renderHtml(htmlCode);

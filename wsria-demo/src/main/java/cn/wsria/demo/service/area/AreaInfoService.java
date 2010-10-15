@@ -79,7 +79,7 @@ public class AreaInfoService {
 	}
 
 	/**
-	 * 查询层级ID，比如一个3级地区的ID，返回结果为1、2级ID
+	 * 查询层级ID，比如一个3级地区的ID，返回结果为[顶级ID(0)，1级ID，2级ID]
 	 * @param childId	子级ID
 	 * @return	如果没有数据返回Long型空数组
 	 */
@@ -125,12 +125,17 @@ public class AreaInfoService {
 			for (AreaInfo areaInfo : areaByParent) {
 				areas.put(String.valueOf(areaInfo.getId()), areaInfo.getAreaName());
 			}
+			
+			/*
+			 * 设置每一个下拉框的默认值
+			 */
 			String defaultValue = "";
 			if (i + 1 == findLayerIds.length) {
 				defaultValue = childId.toString();
 			} else {
 				defaultValue = findLayerIds[i + 1].toString();
 			}
+			// 拼接每一个下拉框的HTML代码
 			selectHtml += HtmlUtil.generateSelect(areas, false, defaultValue);
 		}
 		return selectHtml;
