@@ -1,4 +1,4 @@
-package cn.wsria.util;
+package cn.wsria.util.web;
 
 import javax.servlet.http.HttpServletRequest;
 

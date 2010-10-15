@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springside.modules.utils.web.struts2.Struts2Utils;
 
-import cn.wsria.util.BrowserUtils;
+import cn.wsria.util.web.BrowserUtils;
 
 /**
  * 下载Action

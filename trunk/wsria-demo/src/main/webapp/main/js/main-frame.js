@@ -12,10 +12,10 @@ var _menus = {
 	}, {
 		"menuid" : "2",
 		"icon" : "icon-sys",
-		"menuname" : "jqGrid表格演示",
+		"menuname" : "地区信息",
 		"menus" : [ {
 			"menuid" : "11",
-			"menuname" : "动态加载树",
+			"menuname" : "动态加载地区下拉框",
 			"icon" : "icon-nav",
 			"url" : "easyuiCtrl/Accordion.html"
 		} ]
