@@ -26,10 +26,4 @@ $(function(){
 		}
 	});
 	
-	$(':button').click(function(){
-		//var at = $('#subjectTree').jstree('get_selected');
-		//alert(at.find('a.jstree-clicked').text());
-		$('#subjectTree').jstree('open_all', 'li:first');
-	});
-	
 });
