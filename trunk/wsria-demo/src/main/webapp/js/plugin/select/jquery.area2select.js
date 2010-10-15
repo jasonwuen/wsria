@@ -23,7 +23,7 @@
 			// 数据源
 			url : getCtx() + '/area/area-info!findArea.action',
 			// 直接读取生成好的HTML代码路径
-			fromHtmlUrl : getCtx() + '/area/area-info!generateSelectHtmlCode.action',
+			fromHtmlUrl : getCtx() + '/area/area-info!htmlCode.action',
 			topLevel : 1, // 最高级别标示
 			defaultValue : null, // 默认值
 			layer : null, // 加载地区的级别，默认全部加载
@@ -65,10 +65,14 @@
 		 * 加载下级地区
 		 */
 		function loadChilds(options) {
-			
 			// 检查设置的级别
-			if (settings.layer && settings.layer == $('select', _this).length) {
-				return;
+			if (settings.layer) {
+				if ($.isFunction(settings.callback)) {
+					settings.callback();
+				}
+				if (settings.layer == $('select', _this).length) {
+					return;
+				}
 			}
 			
 			// 清楚选择的下拉框后面的下拉框
