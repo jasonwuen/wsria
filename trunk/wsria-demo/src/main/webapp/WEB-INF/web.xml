@@ -72,6 +72,12 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>AreaInfoServlet</servlet-name>
+		<servlet-class>cn.wsria.demo.servlet.AreaInfoServlet</servlet-class>
+		<load-on-startup>5</load-on-startup>
+	</servlet>
 
 	<!--Spring的ApplicationContext 载入 -->
 	<listener>
