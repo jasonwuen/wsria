@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page import="org.springside.modules.security.springsecurity.SpringSecurityUtils" %>
-<%@ include file="/common/taglibs.jsp" %>
+<%@ include file="/common/global.jsp" %>
 <div id="hd">
 	<div id="title">
 		<h1>wsria-demo示例</h1>

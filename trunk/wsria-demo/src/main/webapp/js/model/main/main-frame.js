@@ -7,7 +7,7 @@ var _menus = {
 			"menuid" : "11",
 			"menuname" : "动态加载树",
 			"icon" : "icon-nav",
-			"url" : "../demo/jstree/normal-dynamic.html"
+			"url" : "../demo/jstree/normal-dynamic.action"
 		} ]
 	}, {
 		"menuid" : "2",
