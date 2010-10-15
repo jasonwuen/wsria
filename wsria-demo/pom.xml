@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springside</groupId>
 		<artifactId>springside3-parent</artifactId>
-		<version>3.3.2</version>
+		<version>3.3.4</version>
 	</parent>
 	<artifactId>wsria-demo</artifactId>
 	<packaging>war</packaging>
@@ -49,10 +49,6 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-annotation_1.0_spec</artifactId>
-		</dependency>
 		<!-- spring end -->
 
 		<!-- database begin -->
@@ -74,7 +70,7 @@
 			<artifactId>javassist</artifactId>
 		</dependency>
 
-		<!-- spring -->
+		<!-- spring data access -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -84,7 +80,7 @@
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
 
-		<!-- dbcp -->
+		<!-- dbcp connection pool -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
@@ -183,10 +179,12 @@
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 		</dependency>
+
 		<dependency>
-			<groupId>com.google.collections</groupId>
-			<artifactId>google-collections</artifactId>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
 		</dependency>
+
 		<!-- utils end -->
 
 		<!-- testing begin -->
@@ -253,20 +251,16 @@
 
 	<build>
 		<plugins>
-			<!-- compiler插件, 设定JDK版本 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
 			<!-- eclipse插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<wtpversion>2.0</wtpversion>
+					<additionalProjectnatures>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+				</configuration>
 			</plugin>
 
 			<!-- jetty插件 -->
@@ -279,12 +273,22 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<useSystemClassLoader>false</useSystemClassLoader>
+				</configuration>
 			</plugin>
 
 			<!--  cobertura插件 ,取消不需要计算覆盖率的类  -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<instrumentation>
+						<excludes>
+							<exclude>**/entity/**/*.class</exclude>
+						</excludes>
+					</instrumentation>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

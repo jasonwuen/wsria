@@ -9,7 +9,7 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springside.modules.web.struts2.Struts2Utils;
+import org.springside.modules.utils.web.struts2.Struts2Utils;
 
 import cn.wsria.demo.entity.jstree.City;
 import cn.wsria.demo.service.jstree.CityManager;
