@@ -1,8 +1,11 @@
 package cn.wsria.demo.web.area;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +15,7 @@ import org.springside.modules.utils.web.struts2.Struts2Utils;
 
 import cn.wsria.demo.entity.area.AreaInfo;
 import cn.wsria.demo.service.area.AreaInfoService;
+import cn.wsria.demo.util.AreaInfoUtil;
 import cn.wsria.demo.web.CrudActionSupport;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -35,6 +39,7 @@ public class AreaInfoAction extends ActionSupport {
 	private Integer level;
 	private Long parentId;
 	private Long childId;
+	private String parentName;
 	
 	/**
 	 * 根据级别、父ID信息输出JSON格式的地区信息
@@ -43,10 +48,16 @@ public class AreaInfoAction extends ActionSupport {
 	public String findArea() {
 		List<AreaInfo> areas = null;
 		// 第一级
-		if (level != null && level == 1) {
+		if (level != null && level == AreaInfoUtil.TOP_LEVEL) {
 			areas = areaService.getAreaByLevel(level);
-			logger.debug("获取第一级地区，个数：{}", areas.size());
-		} else if (parentId != null) {
+			logger.debug("获取第 {} 级地区，个数：{}", level, areas.size());
+		}
+		// 从以此名字的下级显示，例如设置了”上海市“，则页面显示的是上海市下面的所有区县
+		else if (StringUtils.isNotBlank(parentName)) {
+			areas = areaService.getArea(parentName);
+		} 
+		// 读取parent_id为parentId的地区信息
+		else if (parentId != null) {
 			// 子级别
 			areas = areaService.getAreaByParent(parentId);
 			logger.debug("获取父级：{}，地区，个数：{}", parentId, areas.size());
@@ -81,6 +92,13 @@ public class AreaInfoAction extends ActionSupport {
 
 	public void setChildId(Long childId) {
 		this.childId = childId;
+	}
+
+	public void setParentName(String parentName) throws UnsupportedEncodingException {
+		if (StringUtils.isNotBlank(parentName)) {
+			parentName = URLDecoder.decode(parentName, "UTF-8");
+		}
+		this.parentName = parentName;
 	}
 	
 }

@@ -7,9 +7,9 @@
  */
 (function($){
     $.fn.area = function(settings){
-		
 		// 内部对象
 		var _this = this;
+		var _topLevel = 1;
 		
 		// 获取应用名称
 		function getCtx() {
@@ -20,12 +20,11 @@
 	
 		/* 默认参数 */
         var defaults = {
-			// 数据源
-			url : getCtx() + '/area/area-info!findArea.action',
-			// 直接读取生成好的HTML代码路径
-			fromHtmlUrl : getCtx() + '/area/area-info!htmlCode.action',
-			topLevel : 1, // 最高级别标示
-			defaultValue : null, // 默认值
+			url : getCtx() + '/area/area-info!findArea.action', // 数据源
+			fromHtmlUrl : getCtx() + '/area/area-info!htmlCode.action', // 直接读取生成好的HTML代码路径
+			topLevel : _topLevel, // 最高级别标示，每一个地区信息都有一个Leve标示是哪一级的
+			defaultValue : null, // 需要选择的下拉框默认值，会自动逐级选中
+			parentName : null, // 从以此名字的下级显示，例如设置了”上海市“，则页面显示的是上海市下面的所有区县
 			layer : null, // 加载地区的级别，默认全部加载
 			attrs : {}, // 属性集合
 			callback : null // 没加载完一级后回调，有默认值加载时只调用一次
@@ -41,7 +40,13 @@
 			if ($.isFunction(settings.defaultValue)){
 				settings.defaultValue = settings.defaultValue();
 			}
+			
+			if (settings.parentName) {
+				// 转码
+				settings.parentName = encodeURIComponent(settings.parentName);
+			}
 		};
+		// 初始化插件
 		_plugin_init();
 		
 		/**
@@ -113,10 +118,14 @@
 					$(this).data('first', true);
 				}
 				
+				var _param = {};
+				if (settings.parentName) {
+					_param.parentName = settings.parentName;
+				} else {
+					_param.level = settings.topLevel
+				}
 				// 加载创建选择框
-				$.getJSON(settings.url, {
-					level : settings.topLevel
-				}, function(areas){
+				$.getJSON(settings.url, _param, function(areas){
 					// 创建并绑定事件
 					var $select = $('<select/>').data('level', settings.topLevel).bind('change', loadChilds);
 					$.each(areas, function(i, n){

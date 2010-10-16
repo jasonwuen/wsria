@@ -42,6 +42,7 @@
 		<legend>插件设计</legend>
 		<div class="caption">
 		<ol>
+			<li>插件原理：读取后台数据生成下拉框append到一个元素中(div、span、p等)</li>
 			<li>插件源码：<a href="${googlecode }/src/main/webapp/js/plugin/select/jquery.area2select.js">点击查看</a>，标准的jQuery插件写法</li>
 			<li>设计思路：
 				<ol>
@@ -61,7 +62,11 @@
 	</fieldset>
 	<fieldset>
 		<legend>插件API</legend>
-		
+		<ol>
+			<li>默认参数：
+			<xmp></xmp>
+			</li>
+		</ol>
 	</fieldset>
 </body>
 </html>
