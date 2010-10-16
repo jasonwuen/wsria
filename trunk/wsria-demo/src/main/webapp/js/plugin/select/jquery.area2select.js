@@ -1,15 +1,16 @@
-/*
- * 地区信息读取插件，功能如下：
- * 1、异步加载地区列表
- * 2、根据指定地区ID加载
- * @author 咖啡兔
- * @site   www.wsria.cn
+/*!
+ * 
+ * jquery.area2select
+ * 
+ * @license	无限，男女老少皆宜
+ * @version 1.0.0
+ * @author  咖啡兔
+ * @site    www.wsria.cn
  */
 (function($){
-    $.fn.area = function(settings){
+    $.fn.area2select = function(settings){
 		// 内部对象
 		var _this = this;
-		var _topLevel = 1;
 		
 		// 获取应用名称
 		function getCtx() {
@@ -22,12 +23,12 @@
         var defaults = {
 			url : getCtx() + '/area/area-info!findArea.action', // 数据源
 			fromHtmlUrl : getCtx() + '/area/area-info!htmlCode.action', // 直接读取生成好的HTML代码路径
-			topLevel : _topLevel, // 最高级别标示，每一个地区信息都有一个Leve标示是哪一级的
+			topLevel : 1, // 最高级别标示，每一个地区信息都有一个Leve标示是哪一级的
 			defaultValue : null, // 需要选择的下拉框默认值，会自动逐级选中
 			parentName : null, // 从以此名字的下级显示，例如设置了”上海市“，则页面显示的是上海市下面的所有区县
 			layer : null, // 加载地区的级别，默认全部加载
 			attrs : {}, // 属性集合
-			callback : null // 没加载完一级后回调，有默认值加载时只调用一次
+			callback : null //没加载完一级后回调，有默认值加载时只调用一次
 		};
         
         /* 合并默认参数和用户自定义参数  */
@@ -54,11 +55,12 @@
 		 */
 		function setDefaultValue() {
 			if (settings.defaultValue) {
-				$(_this).html('<span>正在加载……</span>').load(settings.fromHtmlUrl, {
+				$(_this).html('&nbsp;').addClass('loading').load(settings.fromHtmlUrl, {
 					childId : settings.defaultValue
 				}, function() {
-					$('span', this).remove();
-					$('select', _this).attr(settings.attrs).bind('change', loadChilds);
+					$('select', _this).attr(settings.attrs).bind('change', function(){
+						loadChilds(this, true);
+					});
 					if ($.isFunction(settings.callback)) {
 						settings.callback();
 					}
@@ -69,24 +71,37 @@
 		/**
 		 * 加载下级地区
 		 */
-		function loadChilds(options) {
+		function loadChilds(selem, manual) {
 			// 检查设置的级别
 			if (settings.layer) {
 				if ($.isFunction(settings.callback)) {
 					settings.callback();
 				}
 				if (settings.layer == $('select', _this).length) {
-					return;
+					// 改变事件的方式
+					$('select:not(:last)', _this).unbind('change').bind('change', function(){
+						loadChilds(this, true);
+						return;
+					});
+					
+					// 自动触发的事件，满足设置的layer时退出插件的循环
+					if (!manual) {
+						return;
+					}
+					
 				}
-			}
-			
+			};
 			// 清楚选择的下拉框后面的下拉框
-			$(this).nextAll().remove();
+			$(selem).nextAll().remove();
+			
+			// loading状态
+			$('<span/>', {html : '&nbsp;&nbsp;'}).addClass('loading').appendTo(_this);
 			
 			// 加载下级创建选择框
 			$.getJSON(settings.url, {
-				parentId : parseInt($(this).val())
+				parentId : parseInt($(selem).val())
 			}, function(areas){
+				$('.loading', _this).remove();
 				if (areas.length == 0) {
 					if ($.isFunction(settings.callback)) {
 						settings.callback();
@@ -94,7 +109,10 @@
 					return;
 				}
 				var _level = $('select', _this).length + 1;
-				var $select = $('<select/>').data('level', _level).bind('change', loadChilds);
+				var $select = $('<select/>').addClass('area2select').data('level', _level).bind('change', function(){
+					// 自动触发
+					loadChilds(this, false); 
+				});
 				$.each(areas, function(i, n) {
 					$('<option/>', {
 						value : n.id,
@@ -112,7 +130,10 @@
 			if (settings.defaultValue) {
 				setDefaultValue();
 			} else { // 只显示列表
-			
+				// 先清空现有的下拉框
+				$('.area2select', _this).remove();
+				$('<span/>', {html : '&nbsp;&nbsp;'}).addClass('loading').appendTo(_this);
+				
 				// 设置第一次加载标志
 				if ($('select', this).length == 0) {
 					$(this).data('first', true);
@@ -122,12 +143,16 @@
 				if (settings.parentName) {
 					_param.parentName = settings.parentName;
 				} else {
-					_param.level = settings.topLevel
+					_param.level = settings.topLevel;
 				}
 				// 加载创建选择框
 				$.getJSON(settings.url, _param, function(areas){
+					$('.loading', _this).remove();
 					// 创建并绑定事件
-					var $select = $('<select/>').data('level', settings.topLevel).bind('change', loadChilds);
+					var $select = $('<select/>').addClass('area2select').data('level', settings.topLevel).bind('change', function(){
+						// 自动触发
+						loadChilds(this, false); 
+					});
 					$.each(areas, function(i, n){
 						$('<option/>', {
 							value: n.id,

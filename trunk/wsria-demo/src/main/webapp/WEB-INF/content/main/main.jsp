@@ -37,7 +37,10 @@
 		</div>
 	</noscript>
     <div region="north" split="true" border="false" class="title">
-        <span style="padding-left:10px; font-size: 16px; "><img src="${ctx }/images/favicon.ico" width="20" height="20" align="absmiddle" /> What's the RIA? ->基于Java和jQuery应用演示</span>
+        <span style="padding-left:10px; font-size: 16px; ">
+        	<img src="${ctx }/images/ria.jpg" width="30" height="30" align="absmiddle" />
+        	What's the RIA? ->基于Java、Springside和jQuery应用演示；构建工具：Maven；当前版本：1.0.0-SNAPSHOT
+        </span>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
         <div class="footer">By <a href="http://www.wsria.cn" target="_blank" title="访问作者博客">咖啡兔 www.wsria.cn</a></div>
