@@ -4,7 +4,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.springframework.test.context.ContextConfiguration;
 import org.springside.modules.test.spring.SpringTxTestCase;
-import org.springside.modules.test.utils.DbUnitUtils;
+
+import cn.wsria.demo.data.MysqlDbUnitUtils;
 
 /**
  * 数据库访问测试基类。
@@ -21,6 +22,6 @@ public class BaseTxTestCase extends SpringTxTestCase {
 
 	@Before
 	public void loadDefaultDatae() throws Exception {
-		DbUnitUtils.loadData(dataSource, "/data/default-data.xml");
+		MysqlDbUnitUtils.loadData(dataSource, "/data/default-data.xml");
 	}
 }
