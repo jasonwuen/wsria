@@ -558,7 +558,6 @@ function _initFunction() {
 			
 		},
 		error: function(req, status) {
-			alert(status);
 			var reqText = req.responseText;
 			if(reqText == 'login') {
 				return;

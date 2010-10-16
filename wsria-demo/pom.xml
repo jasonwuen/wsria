@@ -152,13 +152,13 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 		</dependency>
-		
+
 		<!-- java mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 		</dependency>
-		
+
 		<!-- im -->
 		<dependency>
 			<groupId>net.sourceforge.java-jml</groupId>
@@ -275,6 +275,16 @@
 					<additionalProjectnatures>
 						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
 					</additionalProjectnatures>
+				</configuration>
+			</plugin>
+
+			<!-- war插件-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<warName>wsria-${project.artifactId}-${project.version}</warName>
 				</configuration>
 			</plugin>
 

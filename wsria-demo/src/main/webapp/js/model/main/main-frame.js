@@ -27,17 +27,17 @@ var _menus = {
 	}, {
 		"menuid" : "9999",
 		"icon" : "icon-sys",
-		"menuname" : "关于本示例",
+		"menuname" : "关于",
 		"menus" : [ {
 			"menuid" : "99991",
 			"menuname" : "实例简介",
 			"icon" : "icon-nav",
-			"url" : "demo.html"
+			"url" : "../about/about-demo.action"
 		}, {
 			"menuid" : "99992",
 			"menuname" : "作者简介",
 			"icon" : "icon-nav",
-			"url" : "demo.html"
+			"url" : "../about/about-author.action"
 		} ]
 	} ]
 };
