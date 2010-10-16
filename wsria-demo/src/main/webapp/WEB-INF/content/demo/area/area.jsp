@@ -12,7 +12,7 @@
     legend {font-weight: bold;padding: 5px;}
     .caption {border: 1px dotted green; padding: 5px; font-size: 12px;}
     .code {border: 1px dotted blue;}
-    .result {background-color: white; font-size: 13px;}
+    .result {background-color: white; font-size: 13px; margin-top: 5px;}
     </style>
 	<script src="${ctx }/js/common/jquery.min.js" type="text/javascript"></script>
 	<script src="${ctx }/js/common/common.js" type="text/javascript"></script>
@@ -28,7 +28,7 @@
 			$('#clearResult1').click(function(){
 				$('#results1').html('');
 			});
-
+			
 			// demo2
 			$('#areaDiv2').area({
 				defaultValue : 5698
@@ -74,6 +74,16 @@
 			$('#clearResult31').click(function(){
 				$('#results31').html('');
 			});
+
+			// demo5
+			$('#areaDiv4').area({parentName : '上海市'});
+			$('#getAreaId4').click(function(){
+				var sv = $('#areaDiv4').getAreaId($('#vt4').val());
+				$('<div>文字=' + sv.text + "，value=" + sv.value + "</div>").appendTo('#results4');
+			});
+			$('#clearResult4').click(function(){
+				$('#results4').html('');
+			});
 			
 		});
 	</script>
@@ -103,6 +113,7 @@
 			</ol>
 		</div>
 	</fieldset>
+	
 	<fieldset style="background-color: #FFEBCD">
 		<legend>根据默认值显示</legend>
 		<div id="areaDiv2">地区信息：</div>
@@ -151,6 +162,7 @@
 			</ol>
 		</div>
 	</fieldset>
+	
 	<fieldset style="background-color: #F0E68C">
 		<legend>只读取两级地区 With 默认值 And 属性集合</legend>
 		<div id="areaDiv31">地区信息：</div>
@@ -169,6 +181,30 @@
 				<div class="code">
 				<xmp>HTML：<div id="areaDiv31">地区信息：</div></xmp>
 				<b>Javascript</b>：$('#areaDiv31').area({layer : 2});
+				</div>
+				</li>
+			</ol>
+		</div>
+	</fieldset>
+	
+	<fieldset style="background-color: #FFEBCD">
+		<legend>显示上海市下面的地区</legend>
+		<div id="areaDiv4">地区信息：</div>
+		<hr/>
+		<select id="vt4" multiple="multiple" size="2">
+			<option value="1">第一级</option>
+			<option value="2">第二级</option>
+		</select>
+		<button id="getAreaId4" type="button">获取选中的ID</button>
+		<button id="clearResult4" type="button">清空结果</button>
+		<div id="results4" class="result"></div>
+		<div class="caption">
+			<ol>
+				<li>本例根据制定的默认值读取列表</li>
+				<li><b>代码</b>：
+				<div class="code">
+				<xmp>HTML：<div id="areaDiv4">地区信息：</div></xmp>
+				<b>Javascript</b>：$('#areaDiv4').area({parentName : '上海市'});
 				</div>
 				</li>
 			</ol>

@@ -6,7 +6,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>What's the RIA? ->基于Java和jQuery应用演示</title>
+	<link rel="shortcut icon" href="${ctx }/images/favicon.ico" type="image/x-icon" />
+    <title>What's the RIA? ->基于Java和jQuery应用演示 www.wsria.cn</title>
     <link rel="stylesheet" type="text/css" href="${ctx }/css/xdefault.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx }/js/plugin/easyui/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="${ctx }/js/plugin/easyui/js/themes/icon.css" />
@@ -36,7 +37,7 @@
 		</div>
 	</noscript>
     <div region="north" split="true" border="false" class="title">
-        <span style="padding-left:10px; font-size: 16px; "><img src="${ctx }/images/xeasyui/blocks.gif" width="20" height="20" align="absmiddle" /> What's the RIA? ->基于Java和jQuery应用演示</span>
+        <span style="padding-left:10px; font-size: 16px; "><img src="${ctx }/images/favicon.ico" width="20" height="20" align="absmiddle" /> What's the RIA? ->基于Java和jQuery应用演示</span>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
         <div class="footer">By <a href="http://www.wsria.cn" target="_blank" title="访问作者博客">咖啡兔 www.wsria.cn</a></div>

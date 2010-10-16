@@ -15,6 +15,11 @@ import cn.wsria.demo.entity.area.AreaInfo;
  *
  */
 public class AreaInfoUtil {
+	
+	/**
+	 * 地区信息最高级别标示
+	 */
+	public static final Integer TOP_LEVEL = 1;
 
 	/**
 	 *	所有地区信息，结构<主键ID, 完整信息>

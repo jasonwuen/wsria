@@ -66,6 +66,16 @@ public class AreaInfoService {
 	}
 	
 	/**
+	 * 从parentName的下级显示，例如设置了”上海市“，则页面显示的是上海市下面的所有区县
+	 * @param parentName	父级别的ID
+	 * @return 地区信息集合
+	 */
+	@Transactional(readOnly = true)
+	public List<AreaInfo> getArea(String parentName) {
+		return areaDao.getAreaByParentName(parentName);
+	}
+	
+	/**
 	 * 获取地区信息列表
 	 * @param parentId	父级ID
 	 * @return 地区信息集合
