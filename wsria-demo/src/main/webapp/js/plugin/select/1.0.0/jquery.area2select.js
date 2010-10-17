@@ -176,7 +176,7 @@
 			var _select = $('select:eq(' + (parseInt(index) - 1) + ')', this);
 			return {text : _select.find('option:selected').text(), value : _select.val()};
 		}
-		var _select = $('select:last', this)
+		var _select = $('select:last', this);
 		return {text : _select.find('option:selected').text(), value : _select.val()};
 	};
     
