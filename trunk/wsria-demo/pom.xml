@@ -8,13 +8,13 @@
 	</parent>
 	<groupId>cn.wsria</groupId>
 	<artifactId>demo</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.2</version>
 	<packaging>war</packaging>
 	<name>wsria-demo System</name>
 	<url>http://www.wsria.cn</url>
 	
 	<scm>
-		<connection>scm:svn:https://wsria.googlecode.com/svn/trunk/wsria-demo</connection>
+		<connection>scm:svn:https://wsria.googlecode.com/svn/tags/demo-1.0.2</connection>
 	</scm>
 
 	<!-- 项目属性 -->
