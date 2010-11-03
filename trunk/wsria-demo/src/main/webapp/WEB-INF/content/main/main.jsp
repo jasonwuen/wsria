@@ -43,7 +43,7 @@
         </span>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
-        <div class="footer">By <a href="http://www.wsria.cn" target="_blank" title="访问作者博客">咖啡兔 www.wsria.cn</a></div>
+        <div class="footer">By <a href="http://www.wsria.com" target="_blank" title="访问作者博客">咖啡兔 www.wsria.com</a></div>
     </div>
     <div region="west" hide="true" split="true" title="导航菜单" style="width:180px;" id="west">
 		<div class="easyui-accordion" fit="true" border="false">
@@ -62,7 +62,7 @@
 				<div>2、实现了动态加载jstree的功能</div>
 				<div><br/></div>
 				<div>提示：因为系统使用maven构建，开发环境也依赖maven，所以先让会maven的童鞋<b>尝鲜</b>，不会maven或者想使用maven的童鞋也可以参考本例子构建企业应用，关于maven的介绍请自己google不再本文范围</div>
-				<div>关于后续版本再我<a href="http://www.wsria.cn" target="_blank" linkindex="15">博客</a>的右侧有计划列表，敬请期待！</div>
+				<div>关于后续版本再我<a href="http://www.wsria.com" target="_blank" linkindex="15">博客</a>的右侧有计划列表，敬请期待！</div>
 				<div><br/></div>
 				<div><b><font color="#339966" class="Apple-style-span">SVN地址</font></b>：
 					<span style="font-family: monospace; line-height: normal; font-size: 13px;" class="Apple-style-span"><strong><em>http</em></strong>://wsria.googlecode.com/svn/trunk/</span></div>
