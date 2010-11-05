@@ -8,14 +8,14 @@
 	</parent>
 	<groupId>com.wsria</groupId>
 	<artifactId>demo-sso</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>wsria-demo with sso</name>
 	<url>http://www.wsria.com</url>
 	<description>please visit my blog log: http://www.wsria.com/archives/1349</description>
 
 	<scm>
-		<connection>scm:svn:https://wsria.googlecode.com/svn/tags/wsria-demo-sso-1.0.0</connection>
+		<connection>scm:svn:https://wsria.googlecode.com/svn/branches/wsria-demo-sso</connection>
 	</scm>
 
 	<!-- 项目属性 -->
