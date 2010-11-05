@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springside</groupId>
@@ -9,14 +8,14 @@
 	</parent>
 	<groupId>com.wsria</groupId>
 	<artifactId>demo-sso</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>wsria-demo with sso</name>
 	<url>http://www.wsria.com</url>
 	<description>please visit my blog log: http://www.wsria.com/archives/1349</description>
 
 	<scm>
-		<connection>scm:svn:https://wsria.googlecode.com/svn/branches/wsria-demo-sso</connection>
+		<connection>scm:svn:https://wsria.googlecode.com/svn/tags/wsria-demo-sso-1.0.0</connection>
 	</scm>
 
 	<!-- 项目属性 -->
