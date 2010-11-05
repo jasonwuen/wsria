@@ -55,7 +55,7 @@ public class AutoSetUserAdapterFilter implements Filter {
 		if (object != null) {
 			Assertion assertion = (Assertion) object;
 			String loginName = assertion.getPrincipal().getName();
-			User user = UserUtil.loginUsers.get(loginName);
+			User user = UserUtil.getCurrentUser(httpRequest.getSession());
 			
 			// 第一次登录系统
 			if (user == null) {
@@ -63,10 +63,10 @@ public class AutoSetUserAdapterFilter implements Filter {
 						.getSession().getServletContext());
 				UserManager userManager = (UserManager) wct.getBean("userManager");
 				user = userManager.findUserByLoginName(loginName);
+				// 保存用户信息到Session
+				UserUtil.saveUserToSession(httpRequest.getSession(), user);
 			}
 			
-			// 保存用户信息到Session
-			UserUtil.saveUserToSession(httpRequest.getSession(), user);
 		}
 		chain.doFilter(request, response);
 	}
