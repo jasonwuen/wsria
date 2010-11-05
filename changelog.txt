@@ -1,0 +1,5 @@
+2010-11-05
+1、添加SSO功能，配套教程：http://www.wsria.com/archives/1349
+
+2010-10-16	1.0.1
+1、添加了jquery.area2select1.0.0插件的min和pack版本

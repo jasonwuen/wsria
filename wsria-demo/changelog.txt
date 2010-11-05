@@ -1,2 +1,0 @@
-2010-10-16	1.0.1
-1、添加了jquery.area2select1.0.0插件的min和pack版本
