@@ -18,7 +18,7 @@
 	<script src="${ctx }/js/common/jquery.min.js" type="text/javascript"></script>
 	<script src="${ctx }/js/common/common.js" type="text/javascript"></script>
 	<script src="${ctx }/js/plugin/select/1.0.0/jquery.area2select.pack.js" type="text/javascript"></script>
-	<script src="${ctx }/js/model/demo/area/area-demo.js" type="text/javascript"></script>
+	<script src="${ctx }/js/module/demo/area/area-demo.js" type="text/javascript"></script>
 </head>
 <body>
 	<fieldset style="background-color: #F0FFFF">
