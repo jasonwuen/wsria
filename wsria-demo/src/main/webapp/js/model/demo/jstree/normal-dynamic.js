@@ -3,7 +3,7 @@ $(function(){
 	$("#subjectTree").jstree({
 		"json_data" : {
 			"ajax" : {
-				"url" : "/wsria-demo/demo/jstree/city.action",
+				"url" : ctx + "/demo/jstree/city.action",
 				"data" : function (n) {
 					return { parentId : n.attr ? n.attr("id") : -1 }; 
 				}

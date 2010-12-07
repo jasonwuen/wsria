@@ -4,7 +4,7 @@
 <struts>
 	<constant name="struts.convention.default.parent.package" value="crud-default" />
 	<constant name="struts.convention.package.locators" value="web" />
-	<constant name="struts.convention.package.locators.basePackage" value="cn.wsria.demo" />
+	<constant name="struts.convention.package.locators.basePackage" value="com.wsria.demo" />
 
 	<!-- 用于CRUD Action的parent package -->
 	<package name="crud-default" extends="convention-default, json-default">

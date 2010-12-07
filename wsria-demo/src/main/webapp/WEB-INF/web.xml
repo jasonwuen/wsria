@@ -75,7 +75,7 @@
 	
 	<servlet>
 		<servlet-name>AreaInfoServlet</servlet-name>
-		<servlet-class>cn.wsria.demo.servlet.AreaInfoServlet</servlet-class>
+		<servlet-class>com.wsria.demo.servlet.AreaInfoServlet</servlet-class>
 		<load-on-startup>5</load-on-startup>
 	</servlet>
 
