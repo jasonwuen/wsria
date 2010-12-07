@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springside</groupId>
 		<artifactId>springside3-parent</artifactId>
 		<version>3.3.4</version>
 	</parent>
-	<groupId>cn.wsria</groupId>
+	<groupId>com.wsria</groupId>
 	<artifactId>demo</artifactId>
 	<version>1.0.3-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>wsria-demo System</name>
-	<url>http://www.wsria.cn</url>
-	
+	<url>http://www.wsria.com</url>
+
 	<scm>
 		<connection>scm:svn:https://wsria.googlecode.com/svn/trunk/wsria-demo</connection>
 	</scm>
 
 	<!-- 项目属性 -->
 	<properties>
-		<!--
-			<jdbc.driver.groupId>com.h2database</jdbc.driver.groupId>
-			<jdbc.driver.artifactId>h2</jdbc.driver.artifactId>
-			<jdbc.driver.version>${h2.version}</jdbc.driver.version>
-		-->
-		<!--
-			<jdbc.driver.groupId>com.oracle</jdbc.driver.groupId>
-			<jdbc.driver.artifactId>ojdbc14</jdbc.driver.artifactId>
-			<jdbc.driver.version>10.2.0.3.0</jdbc.driver.version>
-		-->
 		<jdbc.driver.groupId>mysql</jdbc.driver.groupId>
 		<jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
 		<jdbc.driver.version>5.1.11</jdbc.driver.version>
@@ -40,6 +31,7 @@
 		<dependency>
 			<groupId>org.springside</groupId>
 			<artifactId>springside3-core</artifactId>
+			<version>3.3.4.1</version>
 		</dependency>
 
 		<!-- spring begin -->
@@ -185,7 +177,7 @@
 		</dependency>
 		<!-- logging end -->
 
-		<!-- utils begin-->
+		<!-- utils begin -->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
@@ -203,7 +195,13 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.3</version>
+			<classifier>jdk15</classifier>
+		</dependency>
 		<!-- utils end -->
 
 		<!-- testing begin -->
@@ -282,7 +280,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- war插件-->
+			<!-- war插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -307,7 +305,7 @@
 				</configuration>
 			</plugin>
 
-			<!--  cobertura插件 ,取消不需要计算覆盖率的类  -->
+			<!-- cobertura插件 ,取消不需要计算覆盖率的类 -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
@@ -319,7 +317,7 @@
 					</instrumentation>
 				</configuration>
 			</plugin>
-			
+
 			<!-- release插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

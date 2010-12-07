@@ -23,7 +23,7 @@
 	</bean>
 
 	<!-- 使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入 -->
-	<context:component-scan base-package="cn.wsria.demo" />
+	<context:component-scan base-package="com.wsria.demo" />
 
 	<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -63,7 +63,7 @@
 				<prop key="hibernate.cache.provider_configuration_file_resource_path">ehcache/ehcache-hibernate-local.xml</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="cn.wsria.demo.entity" />
+		<property name="packagesToScan" value="com.wsria.demo.entity" />
 	</bean>
 
 	<!-- 事务管理器配置,单数据源事务 -->
