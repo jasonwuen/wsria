@@ -12,7 +12,7 @@
 	<script src="${ctx }/js/plugin/jstree/jquery.jstree.js" type="text/javascript"></script>
 	<script src="${ctx }/js/plugin/tools/jquery.cookie.js" type="text/javascript"></script>
 	<script src="${ctx }/js/plugin/tools/jquery.hotkeys.js" type="text/javascript"></script>
-	<script src="${ctx }/js/model/demo/jstree/normal-dynamic.js" type="text/javascript"></script>
+	<script src="${ctx }/js/module/demo/jstree/normal-dynamic.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="subjectTree"></div>

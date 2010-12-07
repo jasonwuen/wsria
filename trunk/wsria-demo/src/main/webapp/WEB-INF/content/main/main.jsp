@@ -26,8 +26,8 @@
     
     <script type="text/javascript" src="${ctx }/js/common/jquery.min.js"></script>
     <script type="text/javascript" src="${ctx }/js/plugin/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src='${ctx }/js/model/main/outlook.js'> </script>
-    <script type="text/javascript" src='${ctx }/js/model/main/main-frame.js'></script>
+	<script type="text/javascript" src='${ctx }/js/module/main/outlook.js'> </script>
+    <script type="text/javascript" src='${ctx }/js/module/main/main-frame.js'></script>
 
 </head>
 <body class="easyui-layout" style="overflow-y: hidden">
