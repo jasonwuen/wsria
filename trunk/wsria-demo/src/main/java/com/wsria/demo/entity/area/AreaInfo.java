@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.wsria.demo.entity.BaseEntity;
+import com.wsria.arch.util.orm.BaseEntity;
 
 
 /**

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import com.wsria.demo.entity.IdEntity;
+import com.wsria.arch.util.orm.IdEntity;
 
 
 /**
