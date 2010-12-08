@@ -25,6 +25,16 @@ var _menus = {
 			"url" : "../demo/area/area.action"
 		} ]
 	}, {
+		"menuid" : "3",
+		"icon" : "icon-sys",
+		"menuname" : "jqGrid演示",
+		"menus" : [ {
+			"menuid" : "31",
+			"menuname" : "数据字典",
+			"icon" : "icon-nav",
+			"url" : ctx + "/jqgrid/datalibrary-list.action"
+		}]
+	}, {
 		"menuid" : "9999",
 		"icon" : "icon-sys",
 		"menuname" : "关于",

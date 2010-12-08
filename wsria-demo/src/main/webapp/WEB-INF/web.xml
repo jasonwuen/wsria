@@ -88,6 +88,14 @@
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
+	
+	<!-- 数据字典 -->
+	<servlet>
+		<servlet-name>DataLibraryServlet</servlet-name>
+		<servlet-class>com.wsria.demo.servlet.DataLibraryServlet</servlet-class>
+		<load-on-startup>5</load-on-startup>
+	</servlet>
+	
 
 	<!-- session超时定义,单位为分钟 -->
 	<session-config>

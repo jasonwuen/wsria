@@ -24,7 +24,7 @@
     }
     </style>
     
-    <script type="text/javascript" src="${ctx }/js/common/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctx }/js/common/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="${ctx }/js/plugin/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src='${ctx }/js/module/main/outlook.js'> </script>
     <script type="text/javascript" src='${ctx }/js/module/main/main-frame.js'></script>
@@ -39,7 +39,7 @@
     <div region="north" split="true" border="false" class="title">
         <span style="padding-left:10px; font-size: 16px; ">
         	<img src="${ctx }/images/ria.jpg" width="30" height="30" align="absmiddle" />
-        	What's the RIA? ->基于Java、Springside和jQuery应用演示；构建工具：Maven；当前版本：1.0.0-SNAPSHOT
+        	What's the RIA? ->基于Java、Springside和jQuery应用演示；构建工具：Maven3
         </span>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
@@ -56,10 +56,12 @@
 			<div title="欢迎使用" style="padding:20px;overflow:hidden;" id="home">
 				<p>演示各种基于Java和jQuery开发的企业应用</p>
 				<div>为了让大家更好的使用和学习基于Java和jQuery的应用构建，特地建立了一个演示系统wsria-demo，项目基本情况如下：</div>
-				<div>Java架构：<a href="http://www.springside.org.cn" target="_blank" linkindex="14">springside</a></div>
+				<div>Java架构：<a href="http://www.springside.org.cn" target="_blank" linkindex="14">springside</a>(版本：3.3.4.1，由咖啡兔在3.3.4版本修改添加了jqGrid支持)</div>
 				<div>项目构建工具：Maven</div><div><br></div><div>本次发布的版本为初稿，功能如下：</div>
 				<div>1、使用easy-ui搭建的系统页面框架</div>
 				<div>2、实现了动态加载jstree的功能</div>
+				<div>3、新增area2select插件</div>
+				<div>2、添加了对jqGrid的前后台支持</div>
 				<div><br/></div>
 				<div>提示：因为系统使用maven构建，开发环境也依赖maven，所以先让会maven的童鞋<b>尝鲜</b>，不会maven或者想使用maven的童鞋也可以参考本例子构建企业应用，关于maven的介绍请自己google不再本文范围</div>
 				<div>关于后续版本再我<a href="http://www.wsria.com" target="_blank" linkindex="15">博客</a>的右侧有计划列表，敬请期待！</div>
