@@ -152,4 +152,12 @@ public class AreaInfoService {
 		return selectHtml;
 	}
 	
+
+	/**
+	 * 重载地区信息
+	 */
+	public void reload() {
+		init();
+	} 
+	
 }

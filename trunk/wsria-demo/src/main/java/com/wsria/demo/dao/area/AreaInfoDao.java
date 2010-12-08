@@ -39,4 +39,25 @@ public class AreaInfoDao extends HibernateDao<AreaInfo, Long> {
 		return super.find(hql, parentName);
 	}
 	
+	/**
+	 * 统计下级地区的个数
+	 * @param childId	下级地区
+	 * @return 下级地区的个数
+	 */
+	public Long countChildAreaInfo(Long childId) {
+		String hql = "select count(*) from AreaInfo where parentAreaId = ?";
+		return super.findUnique(hql, childId);
+	}
+	
+	/**
+	 * 根据地区名称和父级ID查询
+	 * @param areaName		地区名称
+	 * @param parentAreaId	父级ID
+	 * @return	查询结果为空返回NULL
+	 */
+	public AreaInfo findAreaInfo(String areaName, Long parentAreaId) {
+		String hql = "from AreaInfo where areaName = ? and parentAreaId = ?";
+		return super.findUnique(hql, areaName, parentAreaId);
+	}
+	
 }

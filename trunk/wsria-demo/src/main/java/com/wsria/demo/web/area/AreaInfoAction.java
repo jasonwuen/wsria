@@ -13,12 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springside.modules.utils.web.struts2.Struts2Utils;
 
-
 import com.opensymphony.xwork2.ActionSupport;
+import com.wsria.arch.web.base.CrudActionSupport;
 import com.wsria.demo.entity.area.AreaInfo;
 import com.wsria.demo.service.area.AreaInfoService;
 import com.wsria.demo.util.AreaInfoUtil;
-import com.wsria.demo.web.CrudActionSupport;
 
 /**
  * 地区信息Action
