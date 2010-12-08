@@ -23,6 +23,11 @@ var _menus = {
 			"menuname" : "动态加载地区下拉框",
 			"icon" : "icon-nav",
 			"url" : "../demo/area/area.action"
+		}, {
+			"menuid" : "23",
+			"menuname" : "地区信息维护",
+			"icon" : "icon-nav",
+			"url" : "../demo/area/area-info-list.action"
 		} ]
 	}, {
 		"menuid" : "3",
