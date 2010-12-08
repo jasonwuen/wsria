@@ -7,7 +7,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="${ctx }/images/favicon.ico" type="image/x-icon" />
-    <title>What's the RIA? ->基于Java和jQuery应用演示 www.wsria.cn</title>
+    <title>What's the RIA? ->基于Java和jQuery应用演示 www.wsria.com</title>
     <link rel="stylesheet" type="text/css" href="${ctx }/css/xdefault.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx }/js/plugin/easyui/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="${ctx }/js/plugin/easyui/js/themes/icon.css" />
@@ -53,18 +53,34 @@
     </div>
     <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
         <div id="tabs" class="easyui-tabs" fit="true" border="false" >
-			<div title="欢迎使用" style="padding:20px;overflow:hidden;" id="home">
+			<div title="欢迎使用" style="padding:20px;" id="home">
 				<p>演示各种基于Java和jQuery开发的企业应用</p>
 				<div>为了让大家更好的使用和学习基于Java和jQuery的应用构建，特地建立了一个演示系统wsria-demo，项目基本情况如下：</div>
-				<div>Java架构：<a href="http://www.springside.org.cn" target="_blank" linkindex="14">springside</a>(版本：3.3.4.1，由咖啡兔在3.3.4版本修改添加了jqGrid支持)</div>
-				<div>项目构建工具：Maven</div><div><br></div><div>本次发布的版本为初稿，功能如下：</div>
+				<div>Java架构：<a href="http://www.springside.org.cn" target="_blank" linkindex="14">springside</a>
+					(版本：<b>3.3.4.1</b>，由咖啡兔在3.3.4版本基础上修改添加了jqGrid支持)
+					<p><b>SVN地址：</b>https://wsria.googlecode.com/svn/trunk/springside-3.3.4.x</p>
+				</div>
+				<h3>演示功能如下：</h3>
 				<div>1、使用easy-ui搭建的系统页面框架</div>
 				<div>2、实现了动态加载jstree的功能</div>
 				<div>3、新增area2select插件</div>
 				<div>2、添加了对jqGrid的前后台支持</div>
 				<div><br/></div>
-				<div>提示：因为系统使用maven构建，开发环境也依赖maven，所以先让会maven的童鞋<b>尝鲜</b>，不会maven或者想使用maven的童鞋也可以参考本例子构建企业应用，关于maven的介绍请自己google不再本文范围</div>
+				<div>
+					<b>开发环境</b>：
+					<ol>
+						<li>Eclipse3.6 with JAVAEE，插件：m2eclipse</li>
+						<li>JDK：1.6</li>
+						<li>Tomcat 6.0.29</li>
+					</ol>
+				</div>
 				<div>关于后续版本再我<a href="http://www.wsria.com" target="_blank" linkindex="15">博客</a>的右侧有计划列表，敬请期待！</div>
+				<h3>系统运行初始化工作：</h3>
+				<ol>
+					<li>运行src\main\resources\sql\mysql\wsriademo.sql文件创建所需数据库并初始化数据</li>
+					<li>可以通过导入到eclipse(需要有m2eclipse插件)或者直接用<b>mvn jetty:run</b>运行</li>
+					<li>数据库配置信息位于：src\main\resources\application.properties</li>
+				</ol>
 				<div><br/></div>
 				<div><b><font color="#339966" class="Apple-style-span">SVN地址</font></b>：
 					<span style="font-family: monospace; line-height: normal; font-size: 13px;" class="Apple-style-span"><strong><em>http</em></strong>://wsria.googlecode.com/svn/trunk/</span></div>
