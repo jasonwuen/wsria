@@ -45,7 +45,7 @@ function listDatas(size) {
     		},
 			formoptions: {
             	elmsuffix: $.common.plugin.jqGrid.form.must
-            },
+            }
         }, {
             name: 'libraryName',
             align: 'center',
@@ -53,7 +53,7 @@ function listDatas(size) {
 			edittype: 'text',
 			formoptions: {
             	elmsuffix: $.common.plugin.jqGrid.form.must
-            },
+            }
         }, {
             name: 'libraryCode',
             align: 'center',
@@ -80,7 +80,7 @@ function listDatas(size) {
 	        },
 			formoptions: {
             	elmsuffix: $.common.plugin.jqGrid.form.must
-            },
+            }
         }, {
             name: 'enabled',
             align: 'center',
