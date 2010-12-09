@@ -1,4 +1,4 @@
-#Wed Dec 08 00:13:58 CST 2010
+#Thu Dec 09 09:24:20 CST 2010
 DELEGATES_PREFERENCE=delegateValidatorList
 USER_BUILD_PREFERENCE=enabledBuildValidatorList
 USER_MANUAL_PREFERENCE=enabledManualValidatorListorg.eclipse.jst.j2ee.internal.classpathdep.ClasspathDependencyValidator;org.eclipse.jst.j2ee.internal.web.validation.UIWarValidator;
@@ -6,5 +6,4 @@ USER_PREFERENCE=overrideGlobalPreferencestruedisableAllValidationfalseversion1.2
 eclipse.preferences.version=1
 override=true
 suspend=false
-vals/org.eclipse.wst.jsdt.web.core.JsBatchValidator/global=TF01
 vf.version=3
