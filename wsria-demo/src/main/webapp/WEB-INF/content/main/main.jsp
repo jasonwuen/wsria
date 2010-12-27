@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${ctx }/css/xdefault.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx }/js/plugin/easyui/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="${ctx }/js/plugin/easyui/js/themes/icon.css" />
+    <link rel="stylesheet" type="text/css" href="${ctx }/js/plugin/tip/gritter/css/jquery.gritter.css" />
     <style type="text/css">
     .title {
     	overflow: hidden; height: 30px;
@@ -26,7 +27,9 @@
     
     <script type="text/javascript" src="${ctx }/js/common/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="${ctx }/js/plugin/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctx }/js/plugin/tip/gritter/jquery.gritter.min.js"></script>
 	<script type="text/javascript" src='${ctx }/js/module/main/outlook.js'> </script>
+    <script type="text/javascript" src='${ctx }/js/module/main/menu.js'></script>
     <script type="text/javascript" src='${ctx }/js/module/main/main-frame.js'></script>
 
 </head>
@@ -81,10 +84,14 @@
 					<li>可以通过导入到eclipse(需要有m2eclipse插件)或者直接用<b>mvn jetty:run</b>运行</li>
 					<li>数据库配置信息位于：src\main\resources\application.properties</li>
 				</ol>
-				<div><br/></div>
-				<div><b><font color="#339966" class="Apple-style-span">SVN地址</font></b>：
-					<span style="font-family: monospace; line-height: normal; font-size: 13px;" class="Apple-style-span"><strong><em>http</em></strong>://wsria.googlecode.com/svn/trunk/</span></div>
-				<div><span style="font-family: monospace; line-height: normal; font-size: 13px;" class="Apple-style-span">不定时在线<b>演示地址</b>：</span><a href="http://wsria.gnway.net:10000/wsria-demo/main/main.action" target="_blank">http://wsria.gnway.net:10000/wsria-demo</a><a href="http://kafeitu.gicp.net:10000/wsria-demo" target="_blank"></a></div>
+				<div>
+					<b>项目信息：</b>
+					<ul>
+						<li><b>项目主页：</b><a href="http://code.google.com/p/wsria" target="_blank">http://code.google.com/p/wsria</a></li>
+						<li><b>SVN地址：</b>http://wsria.googlecode.com/svn/trunk/</li>
+						<li>在线<b>演示地址</b>：</span><a href="http://demo.wsria.com:10000/wsria-demo" target="_blank">http://demo.wsria.com:10000/wsria-demo</a></li>
+					</ul>
+				</div>
 			</div>
     	</div>
     </div>
