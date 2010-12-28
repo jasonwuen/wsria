@@ -33,7 +33,7 @@ function InitLeftMenu() {
 		$(this).parent().addClass("selected");
 		$.gritter.add({
 			title: '客官，您的菜来了：',
-	        text: '已加载：' + tabTitle
+	        text: '菜名：' + tabTitle
 	    });
 	}).hover(function(){
 		$(this).parent().addClass("hover");
