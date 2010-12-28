@@ -1,0 +1,117 @@
+/* global */
+body {margin: 5px;}
+a {color: #4d87ce;}
+
+th, td {border-color: #999;}
+
+table.noborder th, table.noborder td {border: none;}
+
+.error      { background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4; }
+.success    { background: #E6EFC2; color: #264409; border-color: #C6D880; }
+.error a    { color: #8a1f11; }
+.success a  { color: #264409; }
+span.must  { color: red; padding-left: 2px; font-weight: bold;}
+
+/* form */
+input[type=text], input[type=password], textarea, select {
+  background-color:#fff;
+  border:1px solid #bbb;
+  padding:2px;
+}
+
+input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {
+  border-color:#666;
+}
+
+/* header */
+#title h1 {
+	font-size: 153.9%;
+	letter-spacing: .1em;
+	margin:0.5em  0;
+}
+
+#title h2 {
+	color: #999;
+	letter-spacing: .1em;
+	margin:0.5em 0;
+}
+
+#menu ul {
+	margin:0 0 0 0;
+	padding: 0.5em;
+	font-weight: bold;
+	background: #BACE87;
+	border-top: 2px solid #658A16;
+	border-bottom: 2px solid #658A16;
+}
+
+#menu li {display: inline;}
+
+#menu ul a {
+	padding: 0.5em;
+	text-decoration: none;
+	color: #fff;
+}
+
+#menu a:hover {background: #658A16;}
+
+/* body */
+#filter,#content {margin-top:1em;}
+
+/* footer */
+#ft {
+	margin-top: 15px;
+	padding: 15px 0px 0px 0px;
+	font-size: 95%;
+	text-align: center;
+	border-top: 2px solid #658A16;
+}
+
+#ft a {color: #999;}
+
+.icon{ background:url(../images/xeasyui/tabicons.png) no-repeat;width:18px; line-height:18px; display:inline-block;}
+.icon-excel{ background-position:-260px -140px;}
+
+/* 模板 */
+.template {display:none; text-align: left; font-size: 12px;}
+
+.sum-count {color: red; font-size: 9pt; font-weight: bold;}
+
+/* My97 */
+.Wdate {cursor: pointer;}
+
+/* jQuery UI */
+.ui-dialog .ui-dialog-buttonpane button {
+	margin: 0 0 0 .3em;
+	padding: 0;
+}
+
+.ui-state-highlight, .ui-state-error {
+	text-align: left;
+}
+
+.ui-state-highlight p {margin: .5em 0em .5em .2em;}
+
+.ui-autocomplete { text-align: left; }
+
+ul.ui-menu li {	list-style: none outside none; }
+
+.ui-dialog .ui-dialog-buttonpane {padding: .3em 1em .2em .4em;}
+
+/* jqGrid打开对话框的时候 会创建一个日期选择使用的DIV导致出现滚动条，本系统中不使用，故不显示*/
+.ui-datepicker {display: none}
+
+/* jqGrid UI */
+.ui-pg-table th, .ui-pg-table td {
+	border : 0px;
+}
+
+#ColTbl_list {
+	overflow-y: visible;
+}
+#t_list {
+	text-align: left;
+	padding: 5px 0px 10px 0px;
+}
+
+#pager_right {width: 150px;}

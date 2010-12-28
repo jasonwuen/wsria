@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+  <wb-module deploy-name="demo">
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/springside3.3.4.x-core/springside3.3.4.x-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    <property name="context-root" value="demo"/>
+        <property name="java-output-path" value="/wsria-demo/target/classes"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
+    <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+  </wb-module>
+</project-modules>
