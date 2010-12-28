@@ -6,8 +6,8 @@
 		<artifactId>springside3-parent</artifactId>
 		<version>3.3.4</version>
 	</parent>
-	<groupId>com.wsria</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.wsria.demo</groupId>
+	<artifactId>wsria-demo</artifactId>
 	<version>1.0.5-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>wsria-demo System</name>
