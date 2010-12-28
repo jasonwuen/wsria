@@ -7,7 +7,7 @@ $(function(){
     $.gritter.add({
         title: '小二，来客人了，招呼起来……',
 		image: 'http://www.wsria.com/wp-content/uploads/ria.jpg',
-        text: '欢迎来到www.wsria.com配套演示系统',
+        text: '欢迎来到www.wsria.com配套演示系统，菜单在本店的左侧，您慢慢看！',
 		time: 100000,
 		sticky: true,
 		before_close: function() {
