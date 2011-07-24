@@ -97,7 +97,7 @@
 			text : ['eq', 'ne', 'cn'],
 			select : ['eq', 'ne'],
 			integer : ['eq', 'ne', 'lt', 'le', 'gt', 'ge'],
-			float : ['eq', 'ne', 'lt', 'le', 'gt', 'ge'],
+			'float' : ['eq', 'ne', 'lt', 'le', 'gt', 'ge'],
 			date : ['eq', 'ne', 'lt', 'le', 'gt', 'ge'],
 			// 初始化My97日期组件
 			initDate : function(settings) {
@@ -183,7 +183,31 @@
 			},
 			// 搜索设置
 			search: {
-				multipleSearch: true
+				multipleSearch: true,
+				caption: '查询',
+				afterShowSearch: function() {
+					/*
+					 * 添加回车键搜索功能
+					 */
+					$('.ui-searchFilter .data *').keydown(function(e) {
+						if (e.which == 13 || e.which == 10) {
+							$('.ui-searchFilter tfoot .ui-search').trigger('click');
+						}
+					});
+					
+					/*
+					 * hack: 搜索类型有select时点击重置按钮后无效
+					 */
+					$('.ui-reset').bind('click', function() {
+						$('.data').find('.vdata').removeClass('vdata');
+						$('.data').find('select').hide();
+						$('.data').find('.default').addClass('vdata').show();
+						
+						// 比较符号重置为默认(第一个)
+						$('.ops').find('select').hide();
+						$('.ops').find('.field0').show();
+					});
+				}
 			},
 			// 查看设置
 			view: {
@@ -193,13 +217,23 @@
 		/**
 		 * 改变窗口大小的时候自动根据iframe大小设置jqGrid列表宽度和高度
 		 * 参数说明：{
+		 * 		enableAutoResize : 是否开启自动高度和宽度调整开关
 		 * 		dataGrid : jqGrid数据列表的ID
 		 * 		callback : 计算完dataGrid需要的高度和宽度后的回调函数
 		 * 		width : 默认为iframe的宽度，如果指定则设置为指定的宽度
 		 * 		height : 默认为iframe的高度，如果指定则设置为指定的高度
+		 * 		beforeAutoResize : 窗口大小调整时自动设置之前
+		 * 		afterAutoResize : 窗口大小调整时自动设置之后
 		 * }
 		 */
 		autoResize: function(options) {
+			var defaults = {
+				enableAutoResize : true,
+				beforeAutoResize: null,
+				afterAutoResize: null
+			};
+			options = $.extend({}, defaults, options);
+				
 			// 第一次调用
 			var size = getWidthAndHeigh();
 			if ($.isFunction(options.callback)) {
@@ -208,12 +242,19 @@
 			}
 			
 			// 窗口大小改变的时候
-			window.onresize = function() {
-				var size = getWidthAndHeigh(true);
-				$(options.dataGrid).jqGrid('setGridHeight', size.height).jqGrid('setGridWidth', size.width);
-				
-				setToolbarHeight();
-			};
+			if (options.enableAutoResize === true) {
+				if ($.isFunction(options.beforeAutoResize)) {
+					options.beforeAutoResize();
+				}
+				window.onresize = function() {
+					var size = getWidthAndHeigh(true);
+					$(options.dataGrid).jqGrid('setGridHeight', size.height).jqGrid('setGridWidth', size.width);
+					setToolbarHeight();
+					if ($.isFunction(options.afterAutoResize)) {
+						options.afterAutoResize(size);
+					}
+				};
+			}
 			
 			// 根据浏览器不同设置工具栏的高度
 			function setToolbarHeight() {
@@ -230,7 +271,6 @@
 			
 			// 获取iframe大小
 			function getWidthAndHeigh(resize) {
-				
 				var hasToolbar = !options.toolbar ? false : options.toolbar[0];
 				if (hasToolbar) {
 					var toolbarType = options.toolbar[1];
@@ -239,8 +279,8 @@
 					}
 				}
 				
-				var iframeHeight = !options.height ? document.body.clientHeight : options.height;
-				var iframeWidth = !options.width ? document.body.clientWidth : options.width;
+				var iframeHeight = !options.height ? document.documentElement.clientHeight : options.height;
+				var iframeWidth = !options.width ? document.documentElement.clientWidth : options.width;
 				// chrome
 				if ($.common.browser.isChrome()) {
 					if (hasToolbar) {
@@ -252,8 +292,8 @@
 							iframeHeight -= 140;
 						}
 					} else {
-						iframeWidth -= 16;
-						iframeHeight -= 85;
+						iframeWidth -= 13;
+						iframeHeight -= 87;
 					}
 				}
 				// firefox
@@ -261,29 +301,43 @@
 					if (hasToolbar) {
 						if (toolbarType == 'top') {
 							iframeWidth -= 10;
-							iframeHeight -= 123;
+							iframeHeight -= 122;
 						} else if (toolbarType == 'both') {
-							iframeWidth -= 14;
-							iframeHeight -= 140;
+							iframeWidth -= 12;
+							iframeHeight -= 145;
 						}
 					} else {
-						iframeWidth -= 15;
-						iframeHeight -= 85;
+						iframeWidth -= 10;
+						iframeHeight -= 89;
 					}
 				} 
 				// IE
 				else {
 					if (hasToolbar) {
 						if (toolbarType == 'top') {
+							if ($.common.browser.isIE() && options.toolbarHeight) {
+								if (options.toolbarHeight.top && options.toolbarHeight.top.ie) {
+									// 减去jqGrid的t_list默认高度和IE的兼容高度
+									iframeHeight -= (options.toolbarHeight.top.ie - 21) - 15;
+								}
+							}
+							iframeHeight -= 128;
 							iframeWidth -= 15;
-							iframeHeight -= 122;
+							setTimeout(function() {
+								// 设置上方的toolbar
+								$('#t_' + options.dataGrid.substr(1)).width(iframeWidth - 11);
+							});
 						} else if (toolbarType == 'both') {
 							iframeWidth -= 14;
-							iframeHeight -= 138;
+							iframeHeight -= 151;
+							setTimeout(function() {
+								// 设置上方的toolbar
+								$('#t_' + options.dataGrid.substr(1)).width(iframeWidth - 11);
+							});
 						}
 					} else {
 						iframeWidth -= 12;
-						iframeHeight -= 83;
+						iframeHeight -= 88;
 					}
 				}
 				return {width: iframeWidth, height: iframeHeight};
@@ -332,6 +386,28 @@
 				return ids;
 			}
 			
+		},
+		/**
+		 * jqgrid列表的gridComplete方法
+		 * @param {Object} listId	列表ID
+		 * @param {Object} callback	回调函数
+		 */
+		gridComplete: function(listId, callback) {
+			if (listId.substring(0, 1) == '#') {
+				listId = listId.substring(1);
+			}
+			if (!$('#' + listId).data('gridComplete')) {
+				setTimeout(function() {
+					// 修复IE下鼠标移动到按钮后格式会乱的问题
+					$('#' + listId + ' td[$=_left] .ui-pg-button').each(function(){
+						$(this).width($(this).width() + 3);
+					});
+					if ($.isFunction(callback)) {
+						callback(listId);
+					}
+					$('#' + listId).data('gridComplete', true);
+				}, 500);
+			}
 		}
 	};
 	
@@ -345,9 +421,9 @@
 	        jsonReader: _plugin_jqGrid.jsonReader,
 	        width: options.size.width,
 	        height: options.size.height,
-	        rowNum: 20,
-	        rowList: [10, 20, 30, 40],
-	        pager: '#pager',
+	        rowNum: options.rowNum || 20,
+	        rowList: options.rowList || [10, 15, 20, 30, 40, 50, 100],
+	        pager: options.pager || '#pager',
 	        viewrecords: true,
 			rownumbers: true,
 			loadError : function(xhr,st,err) {
@@ -357,6 +433,8 @@
 					s = "找不到数据源";
 				} else if (xhr.status == 500) {
 					s = "服务器内部错误";
+				} else if (xhr.responseText == '_login_timeout') {
+					s = "登录超时！";
 				}
 				alert("很抱歉，数据加载失败！\n错误类型: " + s);
     		}
@@ -399,6 +477,10 @@
 	/**			jQuery UI--开始	  			  **/
 	/*******************************************/
 	var _plugin_jqui = {
+		
+		/**
+		 * 按钮相关
+		 */
 		button: {
 			onOff : function(options) {
 				var defaults = {
@@ -419,7 +501,29 @@
 			    }
 			}
 		},
+		
+		/**
+		 * 对话框相关
+		 */
 		dialog: {
+			
+			/**
+			 * 根据浏览器差异获取对话框的高度统一计算方法
+			 * @param height	期望的高度
+			 */
+			/*getDialogHeight: function(options) {
+				var commonHeight = options.height;
+				if ($.common.browser.isIE()) {
+					if (options.ie) {
+						commonHeight += options.ie;
+					}
+				}
+				return commonHeight;
+			},*/
+			
+			/**
+			 * 按钮相关方法
+			 */
 			button: {
 				/**
 				 * 为dialog中的button设置icon
@@ -434,6 +538,81 @@
 		                });
 					});
 				}
+			},
+			/**
+			 * 根据浏览器差异获取window的高度
+			 */
+			getBodyHeight: function() {
+				var tempBodyHeight = document.documentElement.clientHeight;
+				if ($.common.browser.isIE()) {
+					//tempBodyHeight += 150;
+				} else {
+					tempBodyHeight -= 10;
+				}
+				return tempBodyHeight;
+			},
+			
+			/**
+			 * 根据浏览器差异获取设置对话框的高度
+			 */
+			getHeight: function(_height) {
+				var tempBodyHeight = _height;
+				if ($.common.browser.isIE()) {
+					tempBodyHeight += 100;
+				} else {
+					tempBodyHeight -= 10;
+				}
+				return tempBodyHeight;
+			}
+		},
+		
+		/**
+		 * 选项卡相关
+		 */
+		tab: {
+			/**
+			 * 自动设置选项卡的高度
+			 * @param {Object} options
+			 */
+			autoHeight: function(options) {
+				var defaults = {
+					increment: {
+						ie: 0,
+						firefox: 0,
+						chrome: 0
+					}
+				};
+				
+				options = $.extend({}, defaults, options);
+				
+				/**
+				 * 核心处理函数
+				 */
+				function innerDeal() {
+					// 非IE默认值
+					var gap = 80;
+					// 特殊处理IE
+					if ($.common.browser.isIE()) {
+						gap = 60;
+						gap += options.increment.ie;
+					} else if ($.common.browser.isMozila()) {
+						gap += options.increment.firefox;
+					} else if ($.common.browser.isChrome()) {
+						gap += options.increment.chrome;
+					}
+					
+					var height = document.body.clientHeight - gap;
+					$('.ui-tabs-panel').height(height);
+					if ($.isFunction(options.callback)) {
+						options.callback();
+					}
+				}
+				
+				innerDeal();
+				
+				// 窗口大小改变的时候
+				window.onresize = innerDeal;
+				
 			}
 		}
 	};
@@ -507,6 +686,17 @@
 			}
 		}
 	};
+	
+	//-- frame工具 --//
+	$.common.frame = {
+		/**
+		 * 让iframe自适应高度
+		 */
+		autoSizeIframe: function(iframeId) {
+			var parentHeight = $('#' + iframeId).parent();
+			$('#' + iframeId).height(parentHeight);
+		}
+	};
 		
 	//-- 和系统有关的函数 --//
 	$.common.system = {
@@ -540,42 +730,6 @@
 				}
 			});
 			
-		},
-		
-		// 获取预定系统的URL ，以便调用JSONP服务
-		getExerciseUrl : function(options) {
-			if (window.exerciseUrl && window.exerciseUrl != '') {
-				options.callback(exerciseUrl);
-				return;
-			}
-			var defaults = {
-				url : ctx + '/common/sysprop!findProp.action',
-				params : {
-					key : 'exercise-url'
-				},
-				callback : null
-			};
-			
-			options = $.extend(true, defaults, options);
-			
-			$.ajax({
-				url : options.url,
-				cache : false,
-				dataType : 'json',
-				data : options.params,
-				success : function(prop, textStatus) {
-					var exerciseUrl = prop.propValue;
-					window.exerciseUrl = exerciseUrl;
-					if ($.isFunction(options.callback)) {
-						options.callback(exerciseUrl);
-					}
-				},
-				error : function (XMLHttpRequest, textStatus, errorThrown) {
-					if ($.isFunction(options.error)) {
-						options.error(XMLHttpRequest, textStatus, errorThrown);
-					}
-				}
-			});
 		}
 	};
 		
@@ -612,6 +766,45 @@
 			}
 		}
 	};
+	
+	//-- 编码相关 --//
+	$.common.code = {
+		/**
+		 * 把文本转换为HTML代码
+		 * @param {Object} text	原始文本
+		 */
+		htmlEncode : function(text) {
+			var textold;
+			do {
+				textold = text;
+				text = text.replace("\n", "<br>");
+				text = text.replace("\n", "<br/>");
+				text = text.replace("\n", "<BR/>");
+				text = text.replace("\n", "<BR>");
+				text = text.replace(" ", "&nbsp;");
+			} while (textold != text);
+		
+			return text;
+		},
+		
+		/**
+		 * 把HTML代码转换为文本
+		 * @param {Object} text	原始HTML代码
+		 */
+		htmlDecode : function(text) {
+			var textold;
+			do {
+				textold = text;
+				text = text.replace("<br>", "\n");
+				text = text.replace("<br/>", "\n");
+				text = text.replace("<BR>", "\n");
+				text = text.replace("<BR/>", "\n");
+				text = text.replace("&nbsp;", " ");
+			} while (textold != text);
+			return text;
+		}
+		
+	};
 		
 	//-- 文件相关 --//
 	$.common.file = {
@@ -621,7 +814,8 @@
 		 */
 		download : function(fileName){
 			var downUrl = $.common.custom.getCtx() + '/file/download.action?fileName=' + fileName;
-    		open(encodeURI(encodeURI(downUrl)));
+    		//open(encodeURI(encodeURI(downUrl)));
+			location.href = encodeURI(encodeURI(downUrl));
 		}
 	};
 		
@@ -639,9 +833,11 @@
 	$.common.custom = {
 		// 得到应用名
 		getCtx : function() {
-			var url = location.pathname;
-			var contextPath = url.substr(0, url.indexOf('/', 1));
-			return contextPath;
+			try {
+				return ctx || '';
+			} catch (e) {
+				//alert('没有设置ctx变量');
+			}
 		},
 		getLoadingImg : function() {
 			return '<img src="' + $.common.custom.getCtx() + '/images/ajax/loading.gif" align="absmiddle"/>&nbsp;';
@@ -684,9 +880,9 @@
 		 * @param {String} BaseDate	要增加的日期
 		 * @param {Object} interval	增加数量
 		 * @param {Object} DatePart	增加哪一部分
-		 * @param {String} returnType 返回类型strunt|date
+		 * @param {String} ReturnType 返回类型strunt|date
 		 */
-		dateAdd : function(BaseDate, interval, DatePart, returnType) {
+		dateAdd : function(BaseDate, interval, DatePart, ReturnType) {
 		    var dateObj;
 			if(typeof BaseDate == 'object') {
 				dateObj = BaseDate;
@@ -697,7 +893,7 @@
 				var date = parseInt(strDs[2]);
 				dateObj = new Date(year, month, date);
 			}
-			returnType = returnType || 'string';
+			ReturnType = ReturnType || 'string';
 		    var millisecond = 1;
 		    var second = millisecond * 1000;
 		    var minute = second * 60;
@@ -731,9 +927,9 @@
 		            return escape("日期格式不对");
 		    }
 		    newDate = new Date(newDate);
-			if (returnType == 'string') {
-			    return newDate.getFullYear() + "-" + (newDate.getMonth() + 1) + "-" + newDate.getDate();
-			} else if (returnType == 'date') {
+			if (ReturnType == 'string') {
+			    return newDate.getFullYear() + "-" + newDate.getMonth() + "-" + newDate.getDate();
+			} else if (ReturnType == 'date') {
 				return newDate;
 			}
 		}
@@ -843,8 +1039,17 @@ function _initFunction() {
 	$.ajaxSetup({
 		cache : false,
 		global : true,
+		jsonp: null,
+   		jsonpCallback: null,
 		complete: function(req, status) {
-			
+			if (req.responseText == '_login_timeout' || req.responseText.indexOf('登录页') != -1) {
+				// 打开重新登录窗口
+				if ($.isFunction($.common.window.getTopWin().relogin)) {
+					$.common.window.getTopWin().relogin();
+				} else {
+					alert('登录已超时，请保存数据后重新登录！');
+				}
+			}
 		},
 		error: function(req, status) {
 			var reqText = req.responseText;
@@ -852,7 +1057,7 @@ function _initFunction() {
 				return;
 			}
 			if(reqText == 'error') {
-				alert('操作失败！');
+				alert('提示：操作失败！');
 			} else if (reqText != ''){
 				alert("提示：" + reqText);
 			}
@@ -860,7 +1065,6 @@ function _initFunction() {
 	});
 	
 };
-
 
 //-- Javascript对象扩展--开始-//
 /**
@@ -872,9 +1076,17 @@ String.prototype.trim = function() {
 	return this.replace(/(^\s+)|\s+$/g, "");
 };
 
+/**
+ * 转换字符串为json对象
+ */
 String.prototype.toJson = function() {
 	return eval('(' + this + ')');
 };
+
+String.prototype.endsWithIgnoreCase = function(str){
+    return (this.toUpperCase().match(str.toUpperCase() + "$") == str.toUpperCase()) ||
+    (this.toLowerCase().match(str.toLowerCase() + "$") == str.toLowerCase());
+}
 
 /**
  * 输出2010-02-05格式的日期字符串
@@ -886,6 +1098,55 @@ Date.prototype.toDateStr = function() {
 			+ (this.getMonth() < 10 ? "0" + this.getMonth() : this.getMonth())
 			+ "-" + (this.getDate() < 10 ? "0" + this.getDate() : this.getDate());
 };
+
+/**
+ * 日期格式化
+ * @param {Object} format
+ */
+Date.prototype.format = function(format) {
+    var o = {
+        "M+": this.getMonth() + 1, //month 
+        "d+": this.getDate(), //day 
+        "h+": this.getHours(), //hour 
+        "m+": this.getMinutes(), //minute 
+        "s+": this.getSeconds(), //second 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //quarter 
+        "S": this.getMilliseconds() //millisecond 
+    }
+    if (/(y+)/.test(format)) 
+        format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o) 
+        if (new RegExp("(" + k + ")").test(format)) 
+            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+    return format;
+}
+
+
+/**
+ * 将字符串格式的日期转换为日期类型对象
+ * @param {Object} strDate
+ */
+Date.toDate = function(strDate) {
+	var strDs = strDate.split('-');
+	var year = parseInt(strDs[0]);
+	var month = parseInt(strDs[1]);
+	var date = parseInt(strDs[2]);
+	return new Date(year, month, date);
+};
+
+/**
+ * 通过当前时间计算当前周数
+ */
+Date.prototype.getWeekNumber = function(){
+    var d = new Date(this.getFullYear(), this.getMonth(), this.getDate(), 0, 0, 0);
+    var DoW = d.getDay();
+    d.setDate(d.getDate() - (DoW + 6) % 7 + 3); // Nearest Thu
+    var ms = d.valueOf(); // GMT
+    d.setMonth(0);
+    d.setDate(4); // Thu in Week 1
+    return Math.round((ms - d.valueOf()) / (7 * 864e5)) + 1;
+}
+
 
 //+---------------------------------------------------
 //| 日期计算
