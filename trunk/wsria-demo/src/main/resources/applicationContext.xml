@@ -18,6 +18,7 @@
 				<value>classpath*:/application.properties</value>
 				<value>file:/var/wsria-demo/application.properties</value>
 				<value>file:/d:/wsria-demo/application.properties</value>
+				<value>classpath*:/application.local.properties</value>
 			</list>
 		</property>
 	</bean>
