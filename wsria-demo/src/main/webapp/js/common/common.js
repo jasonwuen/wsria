@@ -94,11 +94,11 @@
 		},
 		//-- 搜索比较符号 --/
 		search: {
-			text : ['eq', 'ne', 'cn'],
-			select : ['eq', 'ne'],
-			integer : ['eq', 'ne', 'lt', 'le', 'gt', 'ge'],
-			'float' : ['eq', 'ne', 'lt', 'le', 'gt', 'ge'],
-			date : ['eq', 'ne', 'lt', 'le', 'gt', 'ge'],
+			text : ['eq', 'cn'],
+			select : ['eq'],
+			integer : ['eq', 'lt', 'le', 'gt', 'ge'],
+			'float' : ['eq', 'lt', 'le', 'gt', 'ge'],
+			date : ['eq', 'lt', 'le', 'gt', 'ge'],
 			// 初始化My97日期组件
 			initDate : function(settings) {
 				$(settings.elem).addClass('Wdate');
@@ -417,6 +417,7 @@
 	_plugin_jqGrid.settings = function(options) {
 		return {
 			datatype: "json",
+			rownumWidth: 30,
 			prmNames: _plugin_jqGrid.prmNames,
 	        jsonReader: _plugin_jqGrid.jsonReader,
 	        width: options.size.width,
@@ -1063,6 +1064,9 @@ function _initFunction() {
 			}
 		}
 	});
+	
+	// jqgrid 查询乱码问题
+	//$.jgrid.ajaxOptions = {type: 'post'};
 	
 };
 

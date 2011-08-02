@@ -28,7 +28,7 @@ function listDatas(size) {
 		url: moduleAction + '.action?filter_EQL_parentAreaId=' + parentAreaId,
 		scroll: 1,
 		height : size.height + 8,
-		width : size.width + 10,
+		width : size.width - 2,
 		colNames: ['地区名称', '地区层级', '上级地区', '国家编码', '地区编码', '操作'],
         colModel: [{
             name: 'areaName',
